@@ -96,5 +96,31 @@ namespace ToDoListSql
       //Assert
       Assert.Equal(firstTask, secondTask);
     }
+
+    [Fact]
+    public void Test_GetTasks_OrdersAllTasksByDueDate()
+    {
+      DateTime firstTestDate = new DateTime(2017, 02, 21);
+      DateTime secondTestDate = new DateTime(2017, 02, 10);
+      Task firstTask = new Task("Mow the lawn", 1, firstTestDate);
+      firstTask.Save();
+      Task secondTask = new Task("Do the dishes", 1, secondTestDate);
+      secondTask.Save();
+
+      List<Task> testTaskList = new List<Task> {secondTask, firstTask};
+      List<Task> resultTaskList = Task.GetAll();
+
+      foreach (Task task in testTaskList)
+      {
+        Console.WriteLine("TEST: " + task.GetDescription());
+      }
+
+      foreach (Task task in resultTaskList)
+      {
+        Console.WriteLine("ACTUAL: " + task.GetDescription());
+      }
+
+      Assert.Equal(testTaskList, resultTaskList);
+    }
   }
 }
