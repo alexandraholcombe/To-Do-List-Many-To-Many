@@ -26,8 +26,10 @@ namespace ToDoListSql
     public void Test_Equal_ReturnsTrueIfDescriptionsAreTheSame()
     {
       //Arrange, Act
-      Task firstTask = new Task("Mow the lawn", 1);
-      Task secondTask = new Task("Mow the lawn", 1);
+      DateTime testDate = new DateTime(2017, 2, 21);
+
+      Task firstTask = new Task("Mow the lawn", 1, testDate);
+      Task secondTask = new Task("Mow the lawn", 1, testDate);
 
       //Assert
       Assert.Equal(firstTask, secondTask);
@@ -36,7 +38,9 @@ namespace ToDoListSql
     public void Test_Save_SavesToDatabase()
     {
       //Arrange
-      Task testTask = new Task("Mow the lawn", 1);
+      DateTime testDate = new DateTime(2017, 2, 21);
+
+      Task testTask = new Task("Mow the lawn", 1, testDate);
 
       //Act
       testTask.Save();
@@ -54,7 +58,8 @@ namespace ToDoListSql
     public void Test_Save_AssignsIdToObject()
     {
       //Arrange
-      Task testTask = new Task("Mow the lawn", 1);
+      DateTime testDate = new DateTime(2017, 2, 21);
+      Task testTask = new Task("Mow the lawn", 1, testDate);
 
       //Act
       testTask.Save();
@@ -70,7 +75,8 @@ namespace ToDoListSql
     public void Test_Find_FindsTaskInDatabase()
     {
       //Arrange
-      Task testTask = new Task("Mow the lawn", 1);
+      DateTime testDate = new DateTime(2017, 2, 21);
+      Task testTask = new Task("Mow the lawn", 1, testDate);
       testTask.Save();
 
       //Act
@@ -83,8 +89,9 @@ namespace ToDoListSql
     public void Test_EqualOverrideTrueForSameDescription()
     {
       //Arrange, Act
-      Task firstTask = new Task("Mow the lawn", 1);
-      Task secondTask = new Task("Mow the lawn", 1);
+      DateTime testDate = new DateTime(2017, 2, 21);
+      Task firstTask = new Task("Mow the lawn", 1, testDate);
+      Task secondTask = new Task("Mow the lawn", 1, testDate);
 
       //Assert
       Assert.Equal(firstTask, secondTask);

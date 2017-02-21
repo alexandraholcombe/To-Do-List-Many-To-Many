@@ -90,10 +90,10 @@ namespace ToDoListSql
     {
       Category testCategory = new Category("Household chores");
       testCategory.Save();
-
-      Task firstTask = new Task("Mow the lawn", testCategory.GetId());
+      DateTime testDate = new DateTime(2017, 02, 21);
+      Task firstTask = new Task("Mow the lawn", testCategory.GetId(), testDate);
       firstTask.Save();
-      Task secondTask = new Task("Do the dishes", testCategory.GetId());
+      Task secondTask = new Task("Do the dishes", testCategory.GetId(), testDate);
       secondTask.Save();
 
       List<Task> testTaskList = new List<Task> {firstTask, secondTask};
