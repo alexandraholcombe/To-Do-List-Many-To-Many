@@ -85,6 +85,7 @@ namespace ToDoListSql
       //Assert
       Assert.Equal(testTask, foundTask);
     }
+
     [Fact]
     public void Test_EqualOverrideTrueForSameDescription()
     {
@@ -98,7 +99,7 @@ namespace ToDoListSql
     }
 
     [Fact]
-    public void Test_GetTasks_OrdersAllTasksByDueDate()
+    public void Test_GetAll_OrdersAllTasksByDueDate()
     {
       DateTime firstTestDate = new DateTime(2017, 02, 21);
       DateTime secondTestDate = new DateTime(2017, 02, 10);
@@ -110,15 +111,15 @@ namespace ToDoListSql
       List<Task> testTaskList = new List<Task> {secondTask, firstTask};
       List<Task> resultTaskList = Task.GetAll();
 
-      foreach (Task task in testTaskList)
-      {
-        Console.WriteLine("TEST: " + task.GetDescription());
-      }
-
-      foreach (Task task in resultTaskList)
-      {
-        Console.WriteLine("ACTUAL: " + task.GetDescription());
-      }
+      // foreach (Task task in testTaskList)
+      // {
+      //   Console.WriteLine("TEST: " + task.GetDescription());
+      // }
+      //
+      // foreach (Task task in resultTaskList)
+      // {
+      //   Console.WriteLine("ACTUAL: " + task.GetDescription());
+      // }
 
       Assert.Equal(testTaskList, resultTaskList);
     }
