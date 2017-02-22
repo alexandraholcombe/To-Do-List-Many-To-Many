@@ -59,7 +59,7 @@ namespace ToDoListSql
     }
     public DateTime GetDueDate()
     {
-      return _dueDate;
+      return _dueDate.Date;
     }
     public void SetCategoryId(int newCategoryId)
     {
@@ -141,6 +141,15 @@ namespace ToDoListSql
       cmd.ExecuteNonQuery();
       conn.Close();
     }
+    public static void DeleteTask()
+    {
+        SqlConnection conn = DB.Connection();
+        conn.Open();
+        SqlCommand cmd = new SqlCommand("DELETE FROM tasks WHERE id = @TaskId;", conn);
+        cmd.ExecuteNonQuery();
+        conn.Close();
+    }
+
     public static Task Find(int id)
     {
       SqlConnection conn = DB.Connection();

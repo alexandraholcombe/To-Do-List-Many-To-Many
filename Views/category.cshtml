@@ -1,0 +1,20 @@
+<h2>Here are all the tasks in this category:</h2>
+
+@if (@Model["tasks"].Count == 0)
+{
+  <p>No tasks have been added yet!</p>
+}
+else
+{
+  <ol>
+    @foreach (var task in @Model["tasks"])
+    {
+      <li>@task.GetDescription()</li>
+    }
+  </ol>
+}
+<form action="/categories/@Model["category"].GetId()/delete" method="post">
+  <button type="submit">Delete this category</button>
+</form>
+<p><a href="/tasks/new">Add a new task</a></p>
+<p><a href="/">Return to Main Page</a></p>

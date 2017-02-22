@@ -1,0 +1,16 @@
+<h1>Add a new task</h1>
+<form action="/tasks/new" method="post">
+  <label for="task-description">Task description:</label>
+  <input id="task-description" name="task-description" type="text">
+  <label for="due-date">Due date:</label>
+  <input type="date" name="due-date" id="due-date">
+  <select name="category-id">
+    @foreach (var category in Model)
+    {
+      <option value="@category.GetId()">@category.GetName()</option>
+    }
+  </select>
+  <button type="submit">Add new task</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/tasks">View all tasks</a></p>

@@ -113,6 +113,16 @@ namespace ToDoListSql
       conn.Close();
     }
 
+    public void DeleteCategory()
+    {
+        SqlConnection conn = DB.Connection();
+        conn.Open();
+        SqlCommand cmd = new SqlCommand("DELETE FROM categories WHERE id = @CategoryId;", conn);
+        cmd.Parameters.Add(new SqlParameter("@CategoryId", this.GetId()));
+        cmd.ExecuteNonQuery();
+        conn.Close();
+    }
+
     public static Category Find(int id)
     {
       SqlConnection conn = DB.Connection();
