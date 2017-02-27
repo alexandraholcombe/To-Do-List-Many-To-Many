@@ -40,7 +40,7 @@ namespace ToDoListSql
       };
 
       Post["/tasks/new"] = _ => {
-        Task newTask = new Task(Request.Form["task-description"], Request.Form["category-id"], Request.Form["due-date"]);
+        Task newTask = new Task(Request.Form["task-description"], Request.Form["due-date"]);
         newTask.Save();
         return View["success.cshtml"];
       };
@@ -54,8 +54,21 @@ namespace ToDoListSql
         Dictionary<string, object> model = new Dictionary<string, object>();
         var SelectedCategory = Category.Find(parameters.id);
         var CategoryTasks = SelectedCategory.GetTasks();
+        var AllTasks = Task.GetAll();
         model.Add("category", SelectedCategory);
         model.Add("tasks", CategoryTasks);
+        model.Add("allTasks", AllTasks);
+        return View["category.cshtml", model];
+      };
+
+      Get["/tasks/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        var SelectedTask = Task.Find(parameters.id);
+        var TaskCategories = SelectedTask.GetCategories();
+        var AllCategories = Category.GetAll();
+        model.Add("task", SelectedTask);
+        model.Add("taskCategories", TaskCategories);
+        model.Add("allCategories", AllCategories);
         return View["category.cshtml", model];
       };
 
@@ -67,6 +80,20 @@ namespace ToDoListSql
 
       Post["/categories/{id}/delete"] = parameters => {
         Category.Find(parameters.id).DeleteCategory();
+        return View["success.cshtml"];
+      };
+
+      Post["task/add_category"] = _ => {
+        Category category = Category.Find(Request.Form["category-id"]);
+        Task task = Task.Find(Request.Form["task-id"]);
+        task.AddCategory(category);
+        return View["success.cshtml"];
+      };
+
+      Post["category/add_task"] = _ => {
+        Category category = Category.Find(Request.Form["category-id"]);
+        Task task = Task.Find(Request.Form["task-id"]);
+        category.AddTask(task);
         return View["success.cshtml"];
       };
 
