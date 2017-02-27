@@ -29,7 +29,7 @@ namespace ToDoListSql
         bool idEquality = (this.GetId() == newTask.GetId());
         bool descriptionEquality = (this.GetDescription() == newTask.GetDescription());
         bool dueDateEquality = (this.GetDueDate() == newTask.GetDueDate());
-        return (idEquality && descriptionEquality && categoryEquality && dueDateEquality);
+        return (idEquality && descriptionEquality && dueDateEquality);
       }
     }
 

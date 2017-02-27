@@ -117,10 +117,15 @@ namespace ToDoListSql
     {
         SqlConnection conn = DB.Connection();
         conn.Open();
+
         SqlCommand cmd = new SqlCommand("DELETE FROM categories WHERE id = @CategoryId;", conn);
         cmd.Parameters.Add(new SqlParameter("@CategoryId", this.GetId()));
         cmd.ExecuteNonQuery();
+
+        if (conn != null)
+        {
         conn.Close();
+        }
     }
 
     public static Category Find(int id)
@@ -172,9 +177,8 @@ namespace ToDoListSql
       {
         int taskId = rdr.GetInt32(0);
         string taskDescription = rdr.GetString(1);
-        int taskCategoryId = rdr.GetInt32(2);
-        DateTime taskDueDate = rdr.GetDateTime(3);
-        Task newTask = new Task(taskDescription, taskCategoryId, taskDueDate, taskId);
+        DateTime taskDueDate = rdr.GetDateTime(2);
+        Task newTask = new Task(taskDescription, taskDueDate, taskId);
         tasks.Add(newTask);
       }
       if (rdr != null)
