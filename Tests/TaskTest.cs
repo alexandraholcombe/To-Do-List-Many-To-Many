@@ -169,5 +169,32 @@ namespace ToDoListSql
      //Assert
      Assert.Equal(testList, result);
    }
+
+   [Fact]
+   public void Test_Delete_DeletesCategoryFromDatabase()
+   {
+     //Arrange
+     DateTime testDate = new DateTime(2017, 2, 21);
+     Task testTask1 = new Task("Mow the lawn", testDate);
+     testTask1.Save();
+
+     DateTime testDate = new DateTime(2017, 2, 21);
+     Task testTask2 = new Task("Sweep the floor", testDate);
+     testTask2.Save();
+
+     Category testCategory = new Category("Home stuff");
+     testCategory.Save();
+
+    // Act
+    testTask1.AddCategory(testCategory);
+    testTask2.AddCategory(testCategory);
+    testTask1.Delete();
+
+    List<Task> resultCategoryTask = testCategory.GetTasks();
+    List<Task> testCategoryTask = new List<Task>{testTask2};
+
+    //Assert
+    Assert.Equal(resultCategoryTask,testCategoryTask);
+   }
   }
 }
