@@ -28,8 +28,8 @@ namespace ToDoListSql
       //Arrange, Act
       DateTime testDate = new DateTime(2017, 2, 21);
 
-      Task firstTask = new Task("Mow the lawn", 1, testDate);
-      Task secondTask = new Task("Mow the lawn", 1, testDate);
+      Task firstTask = new Task("Mow the lawn", testDate);
+      Task secondTask = new Task("Mow the lawn", testDate);
 
       //Assert
       Assert.Equal(firstTask, secondTask);
@@ -40,7 +40,7 @@ namespace ToDoListSql
       //Arrange
       DateTime testDate = new DateTime(2017, 2, 21);
 
-      Task testTask = new Task("Mow the lawn", 1, testDate);
+      Task testTask = new Task("Mow the lawn", testDate);
 
       //Act
       testTask.Save();
@@ -59,7 +59,7 @@ namespace ToDoListSql
     {
       //Arrange
       DateTime testDate = new DateTime(2017, 2, 21);
-      Task testTask = new Task("Mow the lawn", 1, testDate);
+      Task testTask = new Task("Mow the lawn", testDate);
 
       //Act
       testTask.Save();
@@ -76,7 +76,7 @@ namespace ToDoListSql
     {
       //Arrange
       DateTime testDate = new DateTime(2017, 2, 21);
-      Task testTask = new Task("Mow the lawn", 1, testDate);
+      Task testTask = new Task("Mow the lawn", testDate);
       testTask.Save();
 
       //Act
@@ -91,8 +91,8 @@ namespace ToDoListSql
     {
       //Arrange, Act
       DateTime testDate = new DateTime(2017, 2, 21);
-      Task firstTask = new Task("Mow the lawn", 1, testDate);
-      Task secondTask = new Task("Mow the lawn", 1, testDate);
+      Task firstTask = new Task("Mow the lawn", testDate);
+      Task secondTask = new Task("Mow the lawn", testDate);
 
       //Assert
       Assert.Equal(firstTask, secondTask);
@@ -103,9 +103,9 @@ namespace ToDoListSql
     {
       DateTime firstTestDate = new DateTime(2017, 02, 21);
       DateTime secondTestDate = new DateTime(2017, 02, 10);
-      Task firstTask = new Task("Mow the lawn", 1, firstTestDate);
+      Task firstTask = new Task("Mow the lawn", firstTestDate);
       firstTask.Save();
-      Task secondTask = new Task("Do the dishes", 1, secondTestDate);
+      Task secondTask = new Task("Do the dishes", secondTestDate);
       secondTask.Save();
 
       List<Task> testTaskList = new List<Task> {secondTask, firstTask};
