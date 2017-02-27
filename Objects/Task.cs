@@ -124,11 +124,12 @@ namespace ToDoListSql
       cmd.ExecuteNonQuery();
       conn.Close();
     }
-    public static void DeleteTask()
+    public void DeleteTask()
     {
         SqlConnection conn = DB.Connection();
         conn.Open();
-        SqlCommand cmd = new SqlCommand("DELETE FROM tasks WHERE id = @TaskId;", conn);
+        SqlCommand cmd = new SqlCommand("DELETE FROM tasks WHERE id = @TaskId; DELETE FROM categories_tasks WHERE task_id = @TaskId;", conn);
+        cmd.Parameters.Add(new SqlParameter("@TaskId", this.GetId()));
         cmd.ExecuteNonQuery();
         conn.Close();
     }

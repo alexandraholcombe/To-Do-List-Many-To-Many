@@ -141,7 +141,7 @@ namespace ToDoListSql
 
       //Act
       testCategory.AddTask(testTask);
-      testCategory.Delete();
+      testCategory.DeleteCategory();
       List<Category> resultTaskCategories = testTask.GetCategories();
       List<Category> testTaskCategories = new List<Category>{};
 
