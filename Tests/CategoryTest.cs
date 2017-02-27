@@ -103,6 +103,31 @@ namespace ToDoListSql
       Assert.Equal(testCategory, foundCategory);
     }
 
+    [Fact]
+    public void Test_GetTasks_ReturnsAllCategoryTasks()
+    {
+      //Arrange
+      Category testCategory = new Category("Household chores");
+      testCategory.Save();
+
+      DateTime testDate = new DateTime(2017, 2, 21);
+
+      Task testTask1= new Task("Mow the lawn", testDate);
+      testTask1.Save();
+
+      Task testTask2 = new Task("Buy plane ticket", testDate);
+      testTask2.Save();
+
+      //Act
+      testCategory.AddTask(testTask1);
+      testCategory.AddTask(testTask2);
+      List<Task> savedTasks= testCategory.GetTasks();
+      List<Task> testList = new List<Task> {testTask1, testTask2};
+
+      //Assert
+      Assert.Equal(testList, savedTasks);
+    }
+
     // [Fact]
     // public void Test_GetTasks_RetrievesAllTasksWithCategory()
     // {
